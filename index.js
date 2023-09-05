@@ -11,5 +11,9 @@ const server = app.listen(4124,()=>{
 const io = socket(server);
 
 io.on('connection',(socket)=>{
-    console.log('made by sockect connectin',socket.id);
+    console.log('made by socket connection',socket.id);
+
+    socket.on('chat',(data)=>{
+        io.sockets.emit('chat',data);
+    })
 });
